@@ -7,7 +7,10 @@
  */
 
 import React from 'react';
-import WelcomePage from "./src/components/WelcomePage"
+import WelcomePage from './src/pages/WelcomePage';
+import {NativeRouter, Route, Link} from 'react-router-native';
+import { Provider } from "react-redux";
+import store from "./src/store"
 
 import {
   SafeAreaView,
@@ -19,17 +22,14 @@ import {
   View,
 } from 'react-native';
 
-
 const App = () => {
-
-
   return (
-    <SafeAreaView>
-      <WelcomePage/>
-      <Text> jellpo</Text>
-    </SafeAreaView>
+    <Provider store={store}> 
+      <NativeRouter>
+          <Route exact path="/" component={WelcomePage} />
+      </NativeRouter>
+      </Provider>
   );
 };
-
 
 export default App;
