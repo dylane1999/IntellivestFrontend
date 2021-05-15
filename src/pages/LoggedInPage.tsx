@@ -1,10 +1,10 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
 
 const LoggedInPage = () => {
     return (
         <SafeAreaView>
-            Logged in
+            <Text> YOU ARE LOGGED IN  </Text>
         </SafeAreaView>
     )
 }
