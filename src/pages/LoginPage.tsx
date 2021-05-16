@@ -94,13 +94,13 @@ const LoginPage = () => {
       <TextInput
         value={emailLogin}
         onChange={changeEmail}
-        placeholder="First Name"
+        placeholder="Email Login"
       />
 
       <TextInput
         value={password}
         onChange={changePassword}
-        placeholder="Last Name"
+        placeholder="Password"
         secure={true}
       />
       <LoginButtonWrapper onPress={()=> loginUser(emailLogin, password)}>

@@ -10,7 +10,7 @@ interface userCredentials {
 }
 
 const loginUserWithCredentials = createAsyncThunk(
-  'auth/loginUserWithCredentials',
+  'user/loginUserWithCredentials',
   async (userCredentials: userCredentials, thunkAPI) => {
     try {
       const response = await axios.post('http://localhost:8080/user/login', {

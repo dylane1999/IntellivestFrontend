@@ -12,12 +12,13 @@ const Root = styled.SafeAreaView`
   width: 100%;
 `;
 
-const LoggedInPage = () => {
+const HomePage = () => {
     return (
         <Root>
             <Text> YOU ARE LOGGED IN  </Text>
+            {console.log("logggedddd innnnnnn")}
         </Root>
     )
 }
 
-export default LoggedInPage
+export default HomePage
