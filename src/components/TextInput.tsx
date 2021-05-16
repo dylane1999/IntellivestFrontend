@@ -6,6 +6,7 @@ interface Props {
   onChange: Dispatch<SetStateAction<string>>;
   value: string;
   placeholder: string;
+  secure?: boolean;
 }
 
 const StyledInput = styled.TextInput`
@@ -16,7 +17,6 @@ const StyledInput = styled.TextInput`
   color: white;
   margin: 20px;
   padding-left: 6px;
-
 `;
 
 const TextInput = (props: Props) => {
@@ -27,7 +27,8 @@ const TextInput = (props: Props) => {
         value={props.value}
         placeholder={props.placeholder}
         placeholderTextColor="#CCCCCC"
-      />
+        secureTextEntry={props.secure}      
+        />
     </View>
   );
 };
