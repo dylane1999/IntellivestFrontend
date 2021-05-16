@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
+import SignUpNewUser, {IUserInfo} from '../actions/SignUpNewUser';
 import GoBackArrow from '../components/GoBackArrow';
 import TextInput from '../components/TextInput';
+import store from '../store';
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -61,7 +63,6 @@ const SignUpButtonWrapper = styled.TouchableOpacity`
   height: 69px;
   border-radius: 5px;
   margin-top: 15%;
-
 `;
 const ButtonText = styled.Text`
   font-size: 16px;
@@ -69,8 +70,27 @@ const ButtonText = styled.Text`
 `;
 
 const SignupPage = () => {
-  const [emailLogin, changeEmail] = useState('');
+  const handleSignUp = (
+    firstName: string,
+    lastName: string,
+    emailLogin: string,
+    password: string,
+  ) => {
+    const userInfo: IUserInfo = {
+      firstName: firstName,
+      lastName: lastName,
+      emailLogin: emailLogin,
+      password: password,
+    };
+
+    store.dispatch(SignUpNewUser(userInfo));
+  };
+
+  const [emailLogin, changeEmailLogin] = useState('');
   const [password, changePassword] = useState('');
+
+  const [firstName, changeFirstName] = useState('');
+  const [lastName, changeLastName] = useState('');
 
   return (
     <Root>
@@ -84,19 +104,19 @@ const SignupPage = () => {
       <Spacing />
 
       <TextInput
-        value={emailLogin}
-        onChange={changeEmail}
+        value={firstName}
+        onChange={changeFirstName}
         placeholder="First Name"
       />
 
       <TextInput
-        value={password}
-        onChange={changePassword}
+        value={lastName}
+        onChange={changeLastName}
         placeholder="Last Name"
       />
       <TextInput
-        value={password}
-        onChange={changePassword}
+        value={emailLogin}
+        onChange={changeEmailLogin}
         placeholder="Email"
       />
 
@@ -106,7 +126,8 @@ const SignupPage = () => {
         placeholder="Password"
       />
 
-      <SignUpButtonWrapper>
+      <SignUpButtonWrapper
+        onPress={() => handleSignUp(firstName, lastName, emailLogin, password)}>
         <ButtonText>Sign Up</ButtonText>
       </SignUpButtonWrapper>
     </Root>
