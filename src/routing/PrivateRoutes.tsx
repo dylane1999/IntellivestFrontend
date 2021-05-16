@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-native';
-import LoggedInPage from '../pages/LoggedInPage';
+import HomePage from '../pages/HomePage';
 
 export const PrivateRoutes = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={LoggedInPage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </>
   );

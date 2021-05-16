@@ -1,29 +1,46 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import axios from "axios"
-import authSlice from "../reducers/authSlice"
+import {Alert} from 'react-native';
+import axios from 'axios';
+import authSlice from '../reducers/authSlice';
+import userSlice, {loginUserAction} from '../reducers/userSlice';
 
 interface userCredentials {
-    login: string;
-    password: string;
+  login: string;
+  password: string;
 }
 
 const loginUserWithCredentials = createAsyncThunk(
   'auth/loginUserWithCredentials',
-  // Declare the type your function argument here:
   async (userCredentials: userCredentials, thunkAPI) => {
-    console.log("staret");
-    const response = await axios.post("http://localhost:8080/user/login", {login: userCredentials.login, password: userCredentials.password })
+    try {
+      const response = await axios.post('http://localhost:8080/user/login', {
+        login: userCredentials.login,
+        password: userCredentials.password,
+      });
 
-    const user = response.data.user
-    const tokens = response.data.tokens
+      const user = response.data.user;
+      const tokens = response.data.tokens;
 
-    thunkAPI.dispatch(authSlice.actions.addToken(tokens.access_token))
-  
-    console.log(response.data);
-    // Inferred return type: Promise<MyData>
+      const createUserAction: loginUserAction = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      };
 
-    return response.data
+      thunkAPI.dispatch(authSlice.actions.addToken(tokens.access_token));
+      thunkAPI.dispatch(userSlice.actions.loginUser(createUserAction));
+
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      console.log(error, 'unable to login user');
+      Alert.alert('Incorrect Credentials', 'Username or Password is Incorrect', [
+        {text: 'try again', onPress: () => console.log('incorrect credentials accepted')},
+      ]);
+    }
   },
 );
 
-export default loginUserWithCredentials
+export default loginUserWithCredentials;
