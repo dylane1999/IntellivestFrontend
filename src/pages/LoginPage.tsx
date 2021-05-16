@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
+import loginUserWithCredentials from '../actions/loginUserWithCredentials';
 import GoBackArrow from '../components/GoBackArrow';
 import TextInput from '../components/TextInput';
+import store from '../store';
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -68,6 +70,13 @@ const ButtonText = styled.Text`
 `;
 
 const LoginPage = () => {
+
+  const loginUser = async (userLogin: string, userPassword: string) => {
+    console.log("call login user")
+    const resData = await store.dispatch(loginUserWithCredentials({login: userLogin, password: userPassword}))
+    console.log(resData)
+  }
+
   const [emailLogin, changeEmail] = useState('');
   const [password, changePassword] = useState('');
 
@@ -92,8 +101,9 @@ const LoginPage = () => {
         value={password}
         onChange={changePassword}
         placeholder="Last Name"
+        secure={true}
       />
-      <LoginButtonWrapper>
+      <LoginButtonWrapper onPress={()=> loginUser(emailLogin, password)}>
         <ButtonText>Login</ButtonText>
       </LoginButtonWrapper>
     </Root>
