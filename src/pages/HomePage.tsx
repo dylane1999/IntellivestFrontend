@@ -3,6 +3,7 @@ import {SafeAreaView, Text} from 'react-native';
 import styled from 'styled-components/native';
 import Header from '../components/Header';
 import Post from '../components/post';
+import BottomNav from "../components/BottomNav"
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -48,6 +49,7 @@ const HomePage = () => {
           posterName="dylan edwards"
         />
       </PostScrollView>
+      <BottomNav/>
     </Root>
   );
 };
