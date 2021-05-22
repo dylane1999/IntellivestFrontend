@@ -20,8 +20,8 @@ const PortfolioIcon = (props: IPortfolioIconProps) => {
     
   return (
     <Svg
-      width="24"
-      height="24"
+      width="30"
+      height="30"
       viewBox="0 0 24 24"
       fill="none"
       >

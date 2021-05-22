@@ -11,7 +11,7 @@ const NavContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   padding: 26px;
 `;
