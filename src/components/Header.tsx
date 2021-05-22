@@ -29,7 +29,7 @@ const Underline = styled.View`
   width: 100%;
   height: 0px;
   left: 0px;
-  top: 61px;
+  top: 65px;
 
   border: 1px solid #a2a2a2;
 `;
