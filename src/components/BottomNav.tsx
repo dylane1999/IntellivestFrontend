@@ -49,11 +49,11 @@ const BottomNav = () => {
         <SearchIcon activeIcon={activeIcon} />
       </Link>
       <Link
-        to={'/profile'}
+        to={'/profile/12213'}
         component={TouchableOpacity}
         onPress={() => {
           console.log('return to user');
-          setActiveIcon("user")
+          setActiveIcon("profile")
         }}>
         <UserIcon activeIcon={activeIcon} />
       </Link>

@@ -10,7 +10,7 @@ interface IUserIconProps {
 }
 
 const getFillColor = (activeIcon: string) => {
-    if (activeIcon === "portfolio") {
+    if (activeIcon === "profile") {
       return "#5559AF"
     }
     return "white"

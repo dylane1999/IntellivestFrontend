@@ -23,7 +23,7 @@ export const PrivateRoutes = () => {
       <Header/>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/profile" component={UserProfilePage}/>
+        <Route exact path="/profile/:id" component={UserProfilePage}/>
       </Switch>
       <BottomNav/>
     </Root>
