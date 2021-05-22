@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import PortfolioIcon from '../assets/PortfolioIcon';
 import SearchIcon from '../assets/SearchIcon';
 import UserIcon from '../assets/UserIcon';
@@ -17,33 +17,45 @@ const NavContainer = styled.View`
 `;
 
 const BottomNav = () => {
-    const [activeIcon, setActiveIcon] = useState("home")
+  const [activeIcon, setActiveIcon] = useState<string>('home');
   return (
     <NavContainer>
       <Link
-      active
+        active
         to={'/'}
         component={TouchableOpacity}
-        onPress={() => console.log('return to homepage')}>
+        onPress={() => {
+          console.log('return to homepage');
+          setActiveIcon('home');
+        }}>
         <HomeIcon activeIcon={activeIcon} />
       </Link>
       <Link
         to={'/portfolio'}
         component={TouchableOpacity}
-        onPress={() => console.log('return to portfolio')}>
+        onPress={() => {
+          console.log('return to portfolio');
+          setActiveIcon('portfolio');
+        }}>
         <PortfolioIcon activeIcon={activeIcon} />
       </Link>
       <Link
         to={'/search'}
         component={TouchableOpacity}
-        onPress={() => console.log('return to search')}>
+        onPress={() => {
+          console.log('return to search');
+          setActiveIcon('search');
+        }}>
         <SearchIcon activeIcon={activeIcon} />
       </Link>
       <Link
         to={'/profile'}
         component={TouchableOpacity}
-        onPress={() => console.log('return to user')}>
-      <UserIcon activeIcon={activeIcon} />
+        onPress={() => {
+          console.log('return to user');
+          setActiveIcon("user")
+        }}>
+        <UserIcon activeIcon={activeIcon} />
       </Link>
     </NavContainer>
   );

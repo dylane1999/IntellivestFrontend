@@ -13,7 +13,7 @@ const Root = styled.SafeAreaView`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
+  height: 80%;
   width: 100%;
 `;
 

@@ -11,7 +11,7 @@ const Root = styled.SafeAreaView`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
+  height: 80%;
   width: 100%;
 `;
 
@@ -40,7 +40,6 @@ const PostScrollView = styled.ScrollView.attrs({
 const HomePage = () => {
   return (
     <Root>
-      <Header />
       <PostScrollView>
         <Post
           postContent="content"
@@ -48,8 +47,8 @@ const HomePage = () => {
           posterAvatar="avatar"
           posterName="dylan edwards"
         />
+
       </PostScrollView>
-      <BottomNav/>
     </Root>
   );
 };
