@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 import Header from '../components/Header';
 import Post from '../components/Post';
 import BottomNav from '../components/BottomNav';
-import { useHistory } from "react-router-native";
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -37,16 +36,13 @@ const PostScrollView = styled.ScrollView.attrs({
   width: 100%;
 `;
 
-
-
 const HomePage = () => {
-  let history = useHistory();
 
-  console.log("history", history.location)
   return (
     <Root>
       <PostScrollView>
         <Post
+          posterId={'qweoh83ubhdwe2'}
           postContent="content"
           postTime="8h"
           posterAvatar=""

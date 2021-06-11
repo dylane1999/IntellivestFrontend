@@ -1,11 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, {ReactElement} from 'react';
 import styled from 'styled-components/native';
-import {Text } from "react-native"
-
-interface Props {
-    
-}
-
+import {Text} from 'react-native';
+import {useParams} from 'react-router-native';
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -17,12 +13,17 @@ const Root = styled.SafeAreaView`
   width: 100%;
 `;
 
-function UserProfilePage({}: Props): ReactElement {
-    return (
-        <Root>
-            <Text> USER PROFILE PAGE</Text>
-        </Root>
-    )
+type idParams = {
+    id: string
 }
 
-export default UserProfilePage
+const UserProfilePage = () => {
+  const userIdParams: idParams = useParams();
+  return (
+    <Root>
+      <Text> USER PROFILE PAGE {userIdParams.id}</Text>
+    </Root>
+  );
+};
+
+export default UserProfilePage;

@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import {Link} from 'react-router-native';
 import styled from 'styled-components/native';
-import Avatar from "./Avatar"
+import Avatar from './Avatar';
 
 /**
  * @interface IPostProps
@@ -16,6 +17,7 @@ interface IPostProps {
   posterName: string;
   postContent: string;
   posterAvatar?: string;
+  posterId: string;
 }
 
 const PostRoot = styled.View`
@@ -25,11 +27,11 @@ const PostRoot = styled.View`
   justify-content: flex-start;
   width: 100%;
   padding: 16px;
-  border-style: solid; 
-  border-bottom-color: #A2A2A2; 
+  border-style: solid;
+  border-bottom-color: #a2a2a2;
   border-bottom-width: 1px;
   border-top-width: 1px;
-  border-top-color: #A2A2A2;
+  border-top-color: #a2a2a2;
 `;
 
 const PostAuthorText = styled.Text`
@@ -51,9 +53,6 @@ const PostTextWrapper = styled.View`
   justify-content: flex-start;
 `;
 
-
-
-
 /**
  * post component
  * @param props - the post props
@@ -61,17 +60,26 @@ const PostTextWrapper = styled.View`
  */
 const Post = (props: IPostProps) => {
   const getAvatar = () => {
-    if (props.posterAvatar){
-      return props.posterAvatar
+    if (props.posterAvatar) {
+      return props.posterAvatar;
     }
-    return 'https://reactnative.dev/img/tiny_logo.png'
-  }
-  
+    return 'https://reactnative.dev/img/tiny_logo.png';
+  };
+
   return (
     <PostRoot>
-      <Avatar imageUrl={getAvatar()} />
+      <Avatar imageUrl={getAvatar()} userId={props.posterId} />
       <PostTextWrapper>
-        <PostAuthorText> {props.posterName } - {props.postTime} </PostAuthorText>
+        <Link
+          to={`/profile/${props.posterId}`}
+          component={TouchableOpacity}
+          onPress={() => {
+            console.log(`go to user: ${props.posterId} profile`);
+          }}>
+          <PostAuthorText>
+            {props.posterName} - {props.postTime}
+          </PostAuthorText>
+        </Link>
         <PostContentText> {props.postContent} </PostContentText>
       </PostTextWrapper>
     </PostRoot>
