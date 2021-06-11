@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
+import Avatar from "./Avatar"
 
 /**
  * @interface IPostProps
@@ -14,7 +15,7 @@ interface IPostProps {
   postTime: string;
   posterName: string;
   postContent: string;
-  posterAvatar: string;
+  posterAvatar?: string;
 }
 
 const PostRoot = styled.View`
@@ -31,7 +32,7 @@ const PostRoot = styled.View`
   border-top-color: #A2A2A2;
 `;
 
-const PostTitleText = styled.Text`
+const PostAuthorText = styled.Text`
   font-size: 16px;
   color: #ffffff;
   padding-bottom: 16px;
@@ -43,6 +44,7 @@ const PostContentText = styled.Text`
 `;
 
 const PostTextWrapper = styled.View`
+  padding-left: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,11 +60,19 @@ const PostTextWrapper = styled.View`
  * @returns - jsx for post
  */
 const Post = (props: IPostProps) => {
+  const getAvatar = () => {
+    if (props.posterAvatar){
+      return props.posterAvatar
+    }
+    return 'https://reactnative.dev/img/tiny_logo.png'
+  }
+  
   return (
     <PostRoot>
+      <Avatar imageUrl={getAvatar()} />
       <PostTextWrapper>
-        <PostTitleText> hello wrol</PostTitleText>
-        <PostContentText> conent </PostContentText>
+        <PostAuthorText> {props.posterName } - {props.postTime} </PostAuthorText>
+        <PostContentText> {props.postContent} </PostContentText>
       </PostTextWrapper>
     </PostRoot>
   );
