@@ -6,6 +6,7 @@ import {Text} from "react-native"
 import UserProfilePage from '../pages/UserProfilePage';
 import styled from 'styled-components/native';
 import Header from '../components/Header';
+import WritePostPage from '../pages/WritePostPage';
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -24,6 +25,7 @@ export const PrivateRoutes = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/profile/:id" component={UserProfilePage}/>
+        <Route exact path="/write/post/:id" component={WritePostPage}/>
       </Switch>
       <BottomNav/>
     </Root>

@@ -1,9 +1,11 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, Text} from 'react-native';
 import styled from 'styled-components/native';
 import IntellivestSmallLogo from '../assets/IntellivestSmallLogo';
 import CreatePostIcon from '../assets/CreatePostIcon';
 import {Link} from 'react-router-native';
+import GoBackArrow from './GoBackArrow';
+import HeaderBackArrow from '../assets/HeaderBackArrow';
 
 const PrimaryHeaderWrapper = styled.View`
   background-color: #323232;
@@ -35,9 +37,11 @@ const Underline = styled.View`
 `;
 
 const Header = () => {
+
   return (
     <PrimaryHeaderWrapper>
       <SecondaryHeaderWrapper>
+      <HeaderBackArrow/>
         <Link
           to={'/'}
           component={TouchableOpacity}
@@ -45,7 +49,7 @@ const Header = () => {
           <IntellivestSmallLogo />
         </Link>
         <Link
-          to={'/'}
+          to={'/write/post'}
           component={TouchableOpacity}
           onPress={() => console.log('go to create post page')}>
           <CreatePostIcon />

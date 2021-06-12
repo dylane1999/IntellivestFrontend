@@ -2,8 +2,8 @@ import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 import styled from 'styled-components/native';
 import Header from '../components/Header';
-import Post from '../components/post';
-      import BottomNav from "../components/BottomNav"
+import Post from '../components/Post';
+import BottomNav from '../components/BottomNav';
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -34,20 +34,20 @@ const PostScrollView = styled.ScrollView.attrs({
   },
 })`
   width: 100%;
-
 `;
 
 const HomePage = () => {
+
   return (
     <Root>
       <PostScrollView>
         <Post
+          posterId={'qweoh83ubhdwe2'}
           postContent="content"
           postTime="8h"
-          posterAvatar="avatar"
+          posterAvatar=""
           posterName="dylan edwards"
         />
-
       </PostScrollView>
     </Root>
   );
