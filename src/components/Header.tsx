@@ -49,7 +49,7 @@ const Header = () => {
           <IntellivestSmallLogo />
         </Link>
         <Link
-          to={'/'}
+          to={'/write/post'}
           component={TouchableOpacity}
           onPress={() => console.log('go to create post page')}>
           <CreatePostIcon />
