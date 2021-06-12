@@ -6,6 +6,8 @@ import CreatePostIcon from '../assets/CreatePostIcon';
 import {Link} from 'react-router-native';
 import GoBackArrow from './GoBackArrow';
 import HeaderBackArrow from '../assets/HeaderBackArrow';
+import { RootState } from '../store';
+import { useSelector } from 'react-redux';
 
 const PrimaryHeaderWrapper = styled.View`
   background-color: #323232;
@@ -38,6 +40,8 @@ const Underline = styled.View`
 
 const Header = () => {
 
+  const userId = useSelector<RootState>(state => state.user.id)
+
   return (
     <PrimaryHeaderWrapper>
       <SecondaryHeaderWrapper>
@@ -49,7 +53,7 @@ const Header = () => {
           <IntellivestSmallLogo />
         </Link>
         <Link
-          to={'/write/post'}
+          to={'/write/post/23214'}
           component={TouchableOpacity}
           onPress={() => console.log('go to create post page')}>
           <CreatePostIcon />

@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import TextInput from '../components/TextInput';
 import {RootState} from '../store';
+import {Text} from "react-native"
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -17,7 +18,9 @@ const Root = styled.SafeAreaView`
 const WritePostPage = () => {
   const state = useSelector((state: RootState) => state.user.id);
 
-  return <Root></Root>;
+  return <Root>
+    <Text> fdafsdfadsf</Text>
+  </Root>;
 };
 
 export default WritePostPage;

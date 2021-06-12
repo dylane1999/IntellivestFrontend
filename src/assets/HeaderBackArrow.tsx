@@ -4,6 +4,7 @@ import {Link} from 'react-router-native';
 import styled from 'styled-components/native';
 import BackArrow from '../assets/BackArrow';
 import {useHistory} from 'react-router-native';
+import ChevronArrow from './ChevronArrow';
 
 const ArrowContainer = styled.View`
 `;
@@ -19,7 +20,7 @@ const HeaderBackArrow = () => {
           history.goBack()
         }}>
         <Text>
-          <BackArrow />
+          <ChevronArrow />
         </Text>
       </TouchableOpacity>
     </ArrowContainer>
