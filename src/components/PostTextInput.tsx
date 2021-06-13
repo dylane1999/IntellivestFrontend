@@ -2,35 +2,37 @@ import React, {useState, Dispatch, SetStateAction} from 'react';
 import {View, TextInput as Input, Text} from 'react-native';
 import styled from 'styled-components/native';
 
-interface ITextInputProps {
+interface IPostTextInputProps {
   onChange: Dispatch<SetStateAction<string>>;
   value: string;
   placeholder: string;
   secure?: boolean;
 }
 
+
 const StyledInput = styled.TextInput`
-  width: 322px;
-  height: 56px;
-  border: 1px solid #f0f0f0;
+  min-width: 100%;
+  height: 60%;
   border-radius: 5px;
   color: white;
-  margin: 20px;
-  padding-left: 6px;
+  padding: 26px;
+  line-height: 18px;
 `;
 
-const TextInput = (props: ITextInputProps) => {
+const PostTextInput = (props: IPostTextInputProps) => {
   return (
     <View>
       <StyledInput
+      multiline={true}
         onChangeText={props.onChange}
         value={props.value}
         placeholder={props.placeholder}
         placeholderTextColor="#CCCCCC"
-        secureTextEntry={props.secure}      
-        />
+        secureTextEntry={props.secure}
+        autoFocus={true}
+      />
     </View>
   );
 };
 
-export default TextInput;
+export default PostTextInput;

@@ -14,7 +14,12 @@ export interface loginUserAction {
   email: string;
 }
 
-const initialState = {} as userState;
+const initialState = {
+  id: "fasdfdaf4332",
+  firstName: null,
+  lastName: null,
+  email: null,
+} as userState;
 
 const userSlice = createSlice({
   name: 'userState',

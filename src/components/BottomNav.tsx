@@ -6,6 +6,8 @@ import HomeIcon from '../assets/HomeIcon';
 import styled from 'styled-components/native';
 import {Link} from 'react-router-native';
 import {TouchableOpacity} from 'react-native';
+import {RootState} from '../store';
+import {useSelector} from 'react-redux';
 
 const NavContainer = styled.View`
   display: flex;
@@ -18,46 +20,53 @@ const NavContainer = styled.View`
 
 const BottomNav = () => {
   const [activeIcon, setActiveIcon] = useState<string>('home');
+  const isWritingPost = useSelector<RootState>(
+    state => state.post.isWritingPost,
+  );
   return (
-    <NavContainer>
-      <Link
-        active
-        to={'/'}
-        component={TouchableOpacity}
-        onPress={() => {
-          console.log('return to homepage');
-          setActiveIcon('home');
-        }}>
-        <HomeIcon activeIcon={activeIcon} />
-      </Link>
-      <Link
-        to={'/portfolio'}
-        component={TouchableOpacity}
-        onPress={() => {
-          console.log('return to portfolio');
-          setActiveIcon('portfolio');
-        }}>
-        <PortfolioIcon activeIcon={activeIcon} />
-      </Link>
-      <Link
-        to={'/search'}
-        component={TouchableOpacity}
-        onPress={() => {
-          console.log('return to search');
-          setActiveIcon('search');
-        }}>
-        <SearchIcon activeIcon={activeIcon} />
-      </Link>
-      <Link
-        to={'/profile/12213'}
-        component={TouchableOpacity}
-        onPress={() => {
-          console.log('return to user');
-          setActiveIcon("profile")
-        }}>
-        <UserIcon activeIcon={activeIcon} />
-      </Link>
-    </NavContainer>
+    <>
+      {!isWritingPost && (
+        <NavContainer>
+          <Link
+            active
+            to={'/'}
+            component={TouchableOpacity}
+            onPress={() => {
+              console.log('return to homepage');
+              setActiveIcon('home');
+            }}>
+            <HomeIcon activeIcon={activeIcon} />
+          </Link>
+          <Link
+            to={'/portfolio'}
+            component={TouchableOpacity}
+            onPress={() => {
+              console.log('return to portfolio');
+              setActiveIcon('portfolio');
+            }}>
+            <PortfolioIcon activeIcon={activeIcon} />
+          </Link>
+          <Link
+            to={'/search'}
+            component={TouchableOpacity}
+            onPress={() => {
+              console.log('return to search');
+              setActiveIcon('search');
+            }}>
+            <SearchIcon activeIcon={activeIcon} />
+          </Link>
+          <Link
+            to={'/profile/12213'}
+            component={TouchableOpacity}
+            onPress={() => {
+              console.log('return to user');
+              setActiveIcon('profile');
+            }}>
+            <UserIcon activeIcon={activeIcon} />
+          </Link>
+        </NavContainer>
+      )}
+    </>
   );
 };
 
