@@ -3,10 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import TextInput from '../components/TextInput';
 import {RootState} from '../store';
-import {Text, TouchableOpacity, } from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {setIsWritingPost} from '../reducers/postSlice';
 import PostTextInput from '../components/PostTextInput';
-import { Overlay } from 'react-native-elements';
+import {Overlay} from 'react-native-elements';
+import {useHistory} from 'react-router-native';
 
 const Root = styled.SafeAreaView`
   background-color: #323232;
@@ -37,7 +38,7 @@ const SubmitText = styled.Text`
   color: white;
 `;
 
-const CancelButton = styled.TouchableOpacity`
+const SubmitButton = styled.TouchableOpacity`
   width: 69px;
   height: 36px;
   background: #555ba9;
@@ -48,23 +49,51 @@ const CancelButton = styled.TouchableOpacity`
   justify-content: center;
 `;
 
+const DisabledSubmitButton = styled.TouchableOpacity`
+  width: 69px;
+  height: 36px;
+  background: rgba(85, 91, 169, 0.5);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 const WritePostPage = () => {
   const state = useSelector((state: RootState) => state.user.id);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleSubmitPost = params => {};
+  const handleSubmitPost = () => {
+    console.log('submitting the post: ', postContent);
+    dispatch(setIsWritingPost(false));
+    history.goBack();
+  };
+
+  const handleCancelPost = () => {
+    console.log('cancelling the post');
+    dispatch(setIsWritingPost(false));
+    history.goBack();
+  };
 
   const [postContent, setPostContent] = useState('');
 
   return (
     <Root>
       <WritePostOperationsWrapper>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleCancelPost()}>
           <CancelText>Cancel</CancelText>
         </TouchableOpacity>
-        <CancelButton>
-          <SubmitText>Submit</SubmitText>
-        </CancelButton>
+        {postContent.length != 0 ? (
+          <SubmitButton onPress={() => handleSubmitPost()}>
+            <SubmitText>Submit</SubmitText>
+          </SubmitButton>
+        ) : (
+          <DisabledSubmitButton disabled={true}>
+            <SubmitText>Submit</SubmitText>
+          </DisabledSubmitButton>
+        )}
       </WritePostOperationsWrapper>
       <PostTextInput
         value={postContent}
